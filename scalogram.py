@@ -275,7 +275,7 @@ def dwt_from_file(fname:str, abs_flag:bool, print_flag:bool) -> None:
         haar_and_plot(s_padded, fname, abs_flag, print_flag)
 
 @click.command()
-@click.option('--duration', default=64, help='length of generated sequence, if no filename given')
+@click.option('-d', '--duration', default=64, help='length of generated sequence, if no filename given')
 @click.option( '--abs_flag', '-a',  is_flag =True, help='give abs of haar coeff.')
 @click.option( '-f', '--file_name', is_flag = False, default=None, help='file to process')
 @click.option( '-v', '--verbose', is_flag = True, help='verbose')

@@ -18,8 +18,8 @@ Without 'uv'
 git clone ...
 python3 -m venv .venv
 source .venv/bin/activate
-pip install -r pyproject.toml
-python3 scalogram.py [flags/args]
+pip install -r requirements.txt
+python3 scalogram.py 
 ```
 
 
@@ -59,12 +59,13 @@ make demo_all
 ## USAGE - flags
 ```commandline
    --help                       # obvious
-   --duration INT               # creates signals of that length
+-d --duration INT               # creates signals of that length
 -f --file_name filename.csv     # operates on filename.csv
 -v --verbose                    # verbose: prints diagnostics
 -a --abs_flag                   # uses the absolute value 
                                 #    of the DWT coefficients
+-p --print_flag                 # prints the plots into png
 ```
 
-## Typical output
-TBD
+## Sample output
+![example_plot](FIG/example_slow_sine.png)

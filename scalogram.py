@@ -96,6 +96,7 @@ def haar(s: list[float]) -> list[float]:
     """ expects a time sequence s of length n (power of 2)
     and returns the DWT coefficients
     """
+    s = zero_pad(s)
     n = len(s)
     assert is_power_of_two(n)
     coeffs = pywt.wavedec(s, 'haar')
@@ -185,6 +186,14 @@ def gen_sine(N, f):
     return sine_f
 
 def do_demo(abs_flag: bool, duration: int, print_flag:bool):
+    if duration < 4:
+        print(f'{duration=} should be >=4 - exiting')
+        exit()
+
+    if not is_power_of_two(duration):
+        print(f'{duration=} should be power of 2 - exiting')
+        exit()
+
     N = duration
     v = list(range(N))
     half = round(N / 2)
@@ -192,7 +201,7 @@ def do_demo(abs_flag: bool, duration: int, print_flag:bool):
     single_spike = gen_spike(N)
     haar_and_plot(single_spike, "single_spike", abs_flag, print_flag)
 
-    prolonged_spike = gen_prolonged_spike(N, half, 8)
+    prolonged_spike = gen_prolonged_spike(N, half, math.floor(half/2))
     haar_and_plot(prolonged_spike, "prolonged_spike-aligned", abs_flag, print_flag)
 
     prolonged_spike = gen_prolonged_spike(N, half + 1, 10)
@@ -269,9 +278,13 @@ def dwt_from_file(fname:str, abs_flag:bool, print_flag:bool) -> None:
                     exit()
 
                 s.append(num)
+        duration = len(s)
+        if duration < 2:
+            print(f'{duration=} < 2 - exiting')
+            exit()
         s_padded = zero_pad(s)
         duration_padded = len(s_padded)
-        assert is_power_of_two(duration_padded), print(f'{duration_padded=} is not power of 2 - exiting')
+        assert is_power_of_two(duration_padded), print(f'{duration_padded=} is not power of 2')
         haar_and_plot(s_padded, fname, abs_flag, print_flag)
 
 @click.command()

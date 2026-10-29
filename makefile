@@ -6,7 +6,7 @@ SRC=scalogram.py
 
 demo_main: demo_file demo 
 
-demo_all: demo_file demo_irregular demo_wrong demo demo_abs \
+demo_all: demo_file demo_irregular demo_wrong demo \
   demo_long demo_wrong2
 
 demo: scalogram.py
@@ -15,12 +15,12 @@ demo: scalogram.py
 demo_long: scalogram.py
 	uv run scalogram.py -d 128
 
-demo_abs: scalogram.py
-	uv run scalogram.py --duration 64 --abs_flag
+# demo_abs: scalogram.py
+#	uv run scalogram.py --duration 64 --abs_flag
 
 demo_file: scalogram.py
 	uv run scalogram.py -f DATA/mixed_square_wave.csv
-	uv run scalogram.py -a -f DATA/mixed_square_wave.csv
+	# uv run scalogram.py -a -f DATA/mixed_square_wave.csv
 
 demo_irregular: scalogram.py
 	uv run scalogram.py -f DATA/mixed_square_wave_irregular.csv

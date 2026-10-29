@@ -1,5 +1,5 @@
 # Haar DWT visualization
-## by Christos Faloutsos, Nov. 2025
+## by Christos Faloutsos, Nov. 2025 - Oct. 2026
 
 ## Goal
 The `scalogram.py` script computes the DWT of the given input file and plots its scalogram.
